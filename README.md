@@ -20,7 +20,6 @@ fn main() {
 	println!("{}", config.get("rust_is_awesome")); // true
 }
 ```
-Take a peek at https://docs.rs/rakh for more docs.. you won't really need them though :P
 
 # LICENSE
 Rakh is under the very permissive Blue Oak 1.0.0 license, take a look at `LICENSE.md` for more information.

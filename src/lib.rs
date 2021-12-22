@@ -7,7 +7,7 @@ pub enum Error {
     NoKeyGiven
 }
 
-pub fn interpret(code: String) -> Result<HashMap<String, String>, Error>{
+pub fn interpret(code: String) -> Result<HashMap<String, String>, Error> {
     let lines = code.split('\n');
     let mut hashmap: HashMap<String, String> = HashMap::new();
 

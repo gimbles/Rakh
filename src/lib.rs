@@ -12,7 +12,7 @@ pub enum Error {
 /// configuration lines must contain a ':' and use a space as a delimiter
 /// ```
 /// let config = crate::rakh::interpret("deno_is_uncool:false\nname_of_funny_crab:Ferris".to_string()).unwrap();
-/// assert_eq!(config.get("deno_is_uncool").unwrap(), "false");
+/// assert!(config.get("deno_is_uncool").unwrap().eq("false"));
 /// ```
 pub fn interpret(code: String) -> Result<HashMap<String, String>, Error> {
     let lines = code.split('\n');
@@ -42,11 +42,8 @@ mod tests {
             "rust_is_awesome:true\ndeno_is_uncool:false\nname_of_funny_crab:Ferris".to_string(),
         )
         .unwrap();
-        assert_eq!(config.get("rust_is_awesome"), Some(&"true".to_string()));
-        assert_eq!(config.get("deno_is_uncool"), Some(&"false".to_string()));
-        assert_eq!(
-            config.get("name_of_funny_crab"),
-            Some(&"Ferris".to_string())
-        );
+        assert!(config.get("rust_is_awesome").unwrap().eq(&"true"));
+        assert!(config.get("deno_is_uncool").unwrap().eq(&"false"));
+        assert!(config.get("name_of_funny_crab").unwrap().eq(&"Ferris"));
     }
 }

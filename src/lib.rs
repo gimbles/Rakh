@@ -1,10 +1,10 @@
-use thiserror::Error;
 use std::collections::HashMap;
+use thiserror::Error;
 
 #[derive(Error, Debug)]
 pub enum Error {
     #[error("data store disconnected")]
-    NoKeyGiven
+    NoKeyGiven,
 }
 
 pub fn interpret(code: String) -> Result<HashMap<String, String>, Error> {

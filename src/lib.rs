@@ -34,7 +34,7 @@ mod tests {
         let config =
             interpret("rust_is_awesome:true\ndeno_is_uncool:false\nname_of_cute_crab:Ferris!")
                 .unwrap();
-        dbg!(&config);
+                
         assert_eq!(config.get("rust_is_awesome").unwrap(), &"true");
         assert_eq!(config.get("deno_is_uncool").unwrap(), &"false");
         assert_eq!(config.get("name_of_cute_crab").unwrap(), &"Ferris!");

@@ -7,18 +7,16 @@ pub enum Error {
     NoKeyGiven,
 }
 
-pub fn interpret(code: &str) -> Result<HashMap<String, &str>, Error> {
+pub fn interpret(code: &str) -> Result<HashMap<&str, &str>, Error> {
     let lines = code.split('\n');
-    let mut hashmap: HashMap<String, &str> = HashMap::new();
+    let mut hashmap: HashMap<&str, &str> = HashMap::new();
 
     for line in lines {
-        let mut key_value = line.split(":").collect::<Vec<_>>();
+        let key_value = line.rsplit_once(':').unwrap();
+        let key = key_value.0;
+        let value = key_value.1;
 
-        let value = key_value[key_value.len() - 1];
-        key_value.remove(key_value.len() - 1);
-        let key = key_value.join(":");
-
-        if key_value[0].is_empty() {
+        if key.is_empty() {
             return Err(Error::NoKeyGiven);
         }
 

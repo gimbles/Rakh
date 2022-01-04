@@ -12,15 +12,21 @@ pub fn interpret(code: &str) -> Result<HashMap<&str, &str>, Error> {
     let mut hashmap: HashMap<&str, &str> = HashMap::new();
 
     for line in lines {
-        let key_value = line.rsplit_once(':').unwrap();
-        let key = key_value.0;
-        let value = key_value.1;
+        let key_value = line.rsplit_once(':');
 
-        if key.is_empty() {
-            return Err(Error::NoKeyGiven);
+        match key_value {
+            Some((key, value)) => {
+                if key.is_empty() {
+                    return Err(Error::NoKeyGiven);
+                }
+
+                hashmap.insert(key, value);
+            }
+
+            None => {
+                return Err(Error::NoKeyGiven);
+            }
         }
-
-        hashmap.insert(key, value);
     }
 
     Ok(hashmap)

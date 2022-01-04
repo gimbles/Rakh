@@ -8,13 +8,10 @@ pub enum Error {
 }
 
 pub fn interpret(code: &str) -> Result<HashMap<&str, &str>, Error> {
-    let lines = code.split('\n');
     let mut hashmap: HashMap<&str, &str> = HashMap::new();
 
-    for line in lines {
-        let key_value = line.rsplit_once(':');
-
-        match key_value {
+    for line in code.lines() {
+        match line.rsplit_once(':') {
             Some((key, value)) => {
                 if key.is_empty() {
                     return Err(Error::NoKeyGiven);
@@ -26,7 +23,7 @@ pub fn interpret(code: &str) -> Result<HashMap<&str, &str>, Error> {
             None => {
                 return Err(Error::NoKeyGiven);
             }
-        }
+        };
     }
 
     Ok(hashmap)

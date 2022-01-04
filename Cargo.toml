@@ -2,6 +2,7 @@
 name = "rakh"
 version = "1.0.0"
 edition = "2021"
+repository = "https://github.com/Yush08/Rakh"
 description = "A dead simple configuration language."
 license-file = "LICENSE.md"
 

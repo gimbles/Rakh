@@ -9,8 +9,10 @@ pub enum Error {
 
 pub fn interpret(code: &str) -> Result<HashMap<&str, &str>, Error> {
     let mut hashmap: HashMap<&str, &str> = HashMap::new();
-
     for line in code.lines() {
+        if line.is_empty() {
+            continue;
+        };
         match line.split_once(':') {
             Some((key, value)) => {
                 if key.is_empty() {

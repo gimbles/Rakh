@@ -64,9 +64,14 @@ mod tests {
 
     #[test]
     fn parsing_works() {
-        let config = interpret("name:\"Rust\"\ndata:15\ntest:true").unwrap();
-        assert_eq!(config.get("name").unwrap(), &Types::String("Rust".to_string()));
-        assert_eq!(config.get("data").unwrap(), &Types::Integer(15));
-        assert_eq!(config.get("test").unwrap(), &Types::Boolean(true));
+        let config =
+            interpret("hello:\"world\"\nrust_is_awesome:true\nrust_version:1.58\nrust_is_number:1\ndeno_is_uncool:false\nname_of_cute_crab:\"Ferris!\"")
+                .unwrap();
+        assert_eq!(config.get("rust_is_awesome").unwrap(), &Types::Boolean(true));
+        assert_eq!(config.get("rust_version").unwrap(), &Types::Float(1.58));
+        assert_eq!(config.get("rust_is_number").unwrap(), &Types::Integer(1));
+        assert_eq!(config.get("deno_is_uncool").unwrap(), &Types::Boolean(false));
+        assert_eq!(config.get("name_of_cute_crab").unwrap(), &Types::String("Ferris!".to_string()));
+        assert_eq!(config.get("hello").unwrap(), &Types::String("world".to_string()));
     }
 }

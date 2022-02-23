@@ -1,11 +1,12 @@
 # Rakh! A dead simple configuration language.
-No seriously, it's simple. With only 37 (significant) lines of code, it's one of the tiniest configuration languages there is.
+No seriously, it's simple. 
 
 # Show me some examples then!
 ```
-key:value
+key:"value"
 x:5
-order_reached:true
+y:4.2
+order_reached:false
 rust_is_awesome:true
 ```
 
